@@ -1,6 +1,5 @@
 package guru.springframework.msscbrewery.web.controller;
 
-import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -8,7 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.UUID;
@@ -27,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
+import guru.springframework.msscbrewery.web.model.BeerStyleEnum;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BeerController.class)
@@ -46,7 +45,7 @@ class BeerControllerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		validBeer = BeerDto.builder().beerName("Pale Ale")
-									.beerStyle("ALE")
+									.beerStyle(BeerStyleEnum.ALE)
 									.id(UUID.randomUUID())
 									.build();
 	}
